@@ -54,11 +54,29 @@ def play_round(secret_number, max_attempts):
             print("🔼 Too high! Try again.")
 
     print(f"❌ Sorry, you've used all your attempts. The secret number was {secret_number}.")
+    print(f"Thanks for playing! 🎮")
     return None
 
-show_welcome_message()
-max_attempts = select_difficulty()
-secret_number = generate_secret_number()
+def play_game():
+    show_welcome_message()
+    max_attempts = select_difficulty()
+    secret_number = generate_secret_number()
+    return play_round(secret_number, max_attempts)
 
-play_round(secret_number, max_attempts)
-print("Thanks for playing! 🎮")
+def main():
+    best_score = float('inf')
+    while True:
+        attempts = play_game()
+        if attempts is not None and attempts < best_score:
+            best_score = attempts
+            print(f"🏆 New best score: {best_score} attempts!")
+
+        play_again = input("Do you want to play again? (yes/no): ").strip().lower()
+        if play_again != 'yes':
+            print("Thanks for playing! Goodbye! 👋")
+            if best_score != float('inf'):
+                print(f"Your best score was {best_score} attempts.")
+            break
+
+if __name__ == "__main__":
+    main()
