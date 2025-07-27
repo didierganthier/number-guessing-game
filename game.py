@@ -1,0 +1,32 @@
+def show_welcome_message():
+    print("🎉 Welcome to the Number Guessing Game! 🎉")
+    name = input("What's your name? ")
+    print(f"Hello, {name}! Let's play a game.")
+    print("I'm thinking of a number between 1 and 100.")
+    print("Your task is to guess the number in as few attempts as possible.")
+    print("Choose a difficulty level to determine how many chances you get.")
+    print("Good luck!\n")
+
+def select_difficulty():
+    print("Please select a difficulty level:")
+    print("1. Easy (10 attempts)")
+    print("2. Medium (5 attempts)")
+    print("3. Hard (3 attempts)")
+
+    while True:
+        choice = input ("Enter your choice (1 / 2 /3): ").strip()
+
+        if choice == '1':
+            print("🟢 You selected Easy mode. You have 10 attempts.\n")
+            return 10
+        elif choice == '2':
+            print("🟡 You selected Medium mode. You have 5 attempts.\n")
+            return 5
+        elif choice == '3':
+            print("🔴 You selected Hard mode. You have 3 attempts.\n")
+            return 3
+        else:
+            print("❌ Invalid choice. Please type 1, 2, or 3.")
+
+show_welcome_message()
+max_attempts = select_difficulty()
