@@ -30,7 +30,7 @@ A fun and interactive Python game where you try to guess a randomly chosen numbe
 3. Run the game:
 
     ```bash
-    python number_guessing_game.py
+    python game.py
     ```
 
 ### How to Play
