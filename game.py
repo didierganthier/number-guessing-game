@@ -1,3 +1,5 @@
+import random
+
 def show_welcome_message():
     print("🎉 Welcome to the Number Guessing Game! 🎉")
     name = input("What's your name? ")
@@ -14,7 +16,7 @@ def select_difficulty():
     print("3. Hard (3 attempts)")
 
     while True:
-        choice = input ("Enter your choice (1 / 2 /3): ").strip()
+        choice = input ("Enter your choice (1 / 2 / 3): ").strip()
 
         if choice == '1':
             print("🟢 You selected Easy mode. You have 10 attempts.\n")
@@ -28,5 +30,35 @@ def select_difficulty():
         else:
             print("❌ Invalid choice. Please type 1, 2, or 3.")
 
+def generate_secret_number():
+    return random.randint(1, 100)
+
+def play_round(secret_number, max_attempts):
+    attempts = 0
+
+    while attempts < max_attempts:
+        try:
+            guess = int(input(f"Enter your guess ({max_attempts - attempts} attempts left): "))
+        except ValueError:
+            print("❌ Please enter a valid integer.")
+            continue
+
+        attempts += 1
+
+        if guess == secret_number:
+            print(f"🎉 Congratulations! You've guessed the number {secret_number} in {attempts} attempts!")
+            return attempts
+        elif guess < secret_number:
+            print("🔽 Too low! Try again.")
+        else:
+            print("🔼 Too high! Try again.")
+
+    print(f"❌ Sorry, you've used all your attempts. The secret number was {secret_number}.")
+    return None
+
 show_welcome_message()
 max_attempts = select_difficulty()
+secret_number = generate_secret_number()
+
+play_round(secret_number, max_attempts)
+print("Thanks for playing! 🎮")
